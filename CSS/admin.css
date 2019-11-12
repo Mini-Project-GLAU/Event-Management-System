@@ -1,0 +1,114 @@
+html, body{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.admin-background {
+    width: 100%;
+    height: 100%;
+    background-image: url(../IMAGES/1.jpg);
+    position: absolute;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    opacity: 0.2;
+    z-index: 2;
+}
+
+.nav-bar {
+    width: 100%;
+    height: 80px;
+    position: absolute;
+    background-color: #1f1f1f;
+    top: 0;
+    opacity: 0.9;
+    border-bottom: 3px solid white;
+    z-index: 8;
+}
+
+.nav-bar h2 {
+    color: white;
+    margin: 23px;
+    font-size: 30px;
+}
+
+#side-bar {
+    position: fixed;
+    width: 200px;
+    height: 80%;
+    background: #1f1f1f;
+    z-index: 7;
+    top: 0;
+    opacity: 0.9;
+    left: -200px;
+    margin-top: 115px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top: 1px solid white;
+    border-right: 3px solid white;
+}
+
+#side-bar.active {
+    left: 0px;
+}
+
+#side-bar ul {
+    margin-top: 130px;
+}
+
+#side-bar ul li {
+    color: white;
+    list-style: none;
+    padding: 25px 5px;
+    font-size: 20px;
+    border-bottom: 2px solid white;
+}
+
+.toggle-btn {
+    position: absolute;
+    left: 230px;
+    top: 0;
+    margin-top: 27px;
+}
+
+.toggle-btn span {
+    display: block;
+    width: 30px;
+    height: 5px;
+    background: white;
+    margin: 3px 0px;
+}
+
+.admin-info {
+    width: 300px;
+    height: 120px;
+    position: absolute;
+    top: 0;
+    z-index: 5;
+    background-color: #1f1f1f;
+    opacity: 0.9;
+    margin: 115px;
+    margin-left: 300px;
+    border-radius: 10px 30px;
+}
+
+.request {
+    width: 300px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    z-index: 5;
+    background-color: #1f1f1f;
+    opacity: 0.9;
+    margin-left: 300px;
+    margin-top: 280px;
+    border-radius: 10px 30px;
+}
+
+
