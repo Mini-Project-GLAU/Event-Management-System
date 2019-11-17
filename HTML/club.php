@@ -1,6 +1,15 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['username']) || $_SESSION['role']!= "teacher"){
+    header("location:club.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+
+<head>
     <title>Club Mentor Panel - CEMS</title>
     <meta charset="utf-8">
     <meta name="author" content="Shani Kumar Gupta">
@@ -28,16 +37,21 @@
             <li>About Us</li>
             <li>Contact</li>
         </ul>
-        <div class="logout-btn">
-            <button type="submit" style="width: 100px;height: 40px;font-size: 15px;font-weight: bold;color: white;border: 1px solid black;background-color: #1296AC;margin: 40px; cursor: pointer">LOG OUT</button>
+        <div class="logout-btn" style="width: 100px;height: 40px;font-size: 15px;font-weight: bold;color: white;border: 2px solid white;background-color: #1296AC;margin: 40px; cursor: pointer;text-align:center;position: absolute;">
+            <a href="logout.php" style="text-align: center;color: white;text-decoration-line: none;position: absolute;margin-top:10px;margin-left:-30px; ">LOGOUT</a>
         </div>
     </div>
     <div class="admin-info">
-        <h3 style="text-align: center;color: white;">SHANI KUMAR GUPTA</h3>
+        <h3 style="text-align: center;color: white;"><?= $_SESSION['username'] ?></h3>
         <h4 style="text-align: center; color: white;margin-top: -10px;"> ID : 171500308</h4>
-        <h4 style="text-align: center;color: white;margin-top: -10px;">Admin</h4>
+        <h4 style="text-align: center;color: white;margin-top: -10px;"><?= $_SESSION['role'] ?></h4>
     </div>
-        <button class="btn" id="myBtn">Request for Event Venue</button>
+    <button class="btn" id="myBtn">Request for Event Venue</button>
+    <div class="prevoius-event">
+        <h2 style="text-align: center;color: white;margin-top: -0px;">Previous Event</h2>
+    </div>
+    <div></div>
+
 
 
     <!-- The Modal -->
@@ -120,5 +134,8 @@
                 modal.style.display = "none";
             }
         }
+
     </script>
-</body></html>
+</body>
+
+</html>
