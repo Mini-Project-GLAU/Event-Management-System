@@ -88,7 +88,7 @@ if(!isset($_SESSION['username']) || $_SESSION['role']!= "admin"){
                 <td style="color:black"><?php echo $row['email']?></td>
                 <td style="color:black"><?php echo $row['department']?>
                 </td>
-                <td style="color:black"><a href="edit-user.php?id=<?php echo $row['id'];?>">Edit</a> | <a href="">Delete</a></td>
+                <td style="color:black"><a href="edit-user.php?id=<?php echo $row['id'];?>">Edit</a> | <a href="delete-user.php?id=<?php echo $row['id'];?>">Delete</a></td>
 
             </tr>
             <?php $i++;}}else{

@@ -57,7 +57,8 @@ if(!isset($_SESSION['username']) || $_SESSION['role']!= "admin"){
     <div class="request" style="cursor: pointer;">
         <h3 style="text-align: center;margin-top: 10px;color: white;font-family: 'Calistoga', cursive;font-size:20px;">Accept the Club Event Request</h3>
     </div>
-    <table class="table table-striped table-hover " style="position:absolute;top:0;margin-top:340px;width:70%;margin-left:300px;">
+
+       <table class="table table-striped table-hover " style="position:absolute;top:0;margin-top:340px;width:70%;margin-left:300px;">
         <thead>
             <tr>
                 <th style="color:white">Sr.No.</th>
@@ -69,6 +70,8 @@ if(!isset($_SESSION['username']) || $_SESSION['role']!= "admin"){
                 <th style="color:white">Venue</th>
                 <th style="color:white">Apply By</th>
                 <th style="color:white">Status</th>
+                <th style="color:white">Comment</th>
+                <th style="color:white">Comment</th>
 
             </tr>
         </thead>
@@ -76,7 +79,7 @@ if(!isset($_SESSION['username']) || $_SESSION['role']!= "admin"){
             <?php
     $i=1;
             $username = $_SESSION['username'];
-            $query = "SELECT * FROM `apply_event` WHERE `apply_by` = '$username'";
+            $query = "SELECT * FROM `apply_event` t1 join `users` t2 on t1.apply_by=t2.username";
             $res = mysqli_query($conn,$query);
             $count= mysqli_num_rows($res);
 
@@ -94,7 +97,10 @@ if(!isset($_SESSION['username']) || $_SESSION['role']!= "admin"){
                 <td class="time_to" style="color:black"><?php echo $row['time_to']?></td>
                 <td class="venue_select" style="color:black"><?php echo $row['venue_select']?></td>
                 <td class="apply_by" style="color:black"><?php echo $row['apply_by']?></td>
-                <td class="status" style="color:black"><?php echo $row['status']?></td>
+                <td class="status" style="color:green"><?php echo $row['status']?></td>
+                <td><textarea name="comment"></textarea></td>
+                <td><button type="submit" class="btn btn-primary">Approved</button>
+                <button type="submit" class="btn btn-primary">Reject</button></td>
             </tr>
             <?php $i++;}}else{
             }

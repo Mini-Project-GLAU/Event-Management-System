@@ -17,6 +17,7 @@ if(isset($_POST['login'])){
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
 
+
     session_regenerate_id();
     $_SESSION['username'] = $row['username'];
     $_SESSION['role'] = $row['user_type'];

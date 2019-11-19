@@ -28,6 +28,32 @@ if(!isset($_SESSION['username']) || $_SESSION['role']!= "admin"){
             document.getElementById("side-bar").classList.toggle('active');
         }
 
+        function formvalidation() {
+            var username=$('#username').val();
+            var user_type=$('#user_type').val();
+            var email=$('#email').val();
+            var department=$('#department').val();
+            if(username==''){
+                alert('Please enter your name');
+                return false;
+            }
+
+            if(user_type==''){
+                alert('Please enter your user type');
+                return false;
+            }
+
+            if(email==''){
+                alert('Please enter your email');
+                return false;
+            }
+
+            if(department==''){
+                alert('Please enter your department');
+                return false;
+            }
+            }
+
     </script>
     <div class="admin-background"></div>
     <div class="overlay"></div>
@@ -49,95 +75,60 @@ if(!isset($_SESSION['username']) || $_SESSION['role']!= "admin"){
             <a href="logout.php" style="text-align: center;color: white;text-decoration-line: none;position: absolute;margin-top:5px;margin-left:-30px; ">LOGOUT</a>
         </div>
     </div>
-    <div class="admin-info">
-        <h3 style="text-align: center;color: white;font-family: 'Calistoga', cursive;"><?= $_SESSION['username'] ?></h3>
-<!--        <h4 style="text-align: center; color: white;margin-top: -10px;font-family: 'Calistoga', cursive;"> ID : 171500308</h4>-->
-        <h4 style="text-align: center;color: white;margin-top: -10px;font-family: 'Calistoga', cursive;"><?= $_SESSION['role'] ?></h4>
-    </div>
-    <div class="user-update" style="position:absolute;top:0;z-index:50; width:400px;height:400px;background-color:white;opacity:0.8;color:black;justify-content:center;">
-        <form class="form-horizontal">
-  <fieldset>
-    <legend>Legend</legend>
-    <div class="form-group">
-      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
-      <div class="col-lg-10">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox"> Checkbox
-          </label>
-        </div>
-      </div>
-    </div>
+    <div class="user-update" style="position:absolute;top:0;z-index:50; width:400px;height:470px;background-color:white;opacity:0.8;color:black;margin-left:500px;margin-top:120px;border-radius:10px;padding:10px;">
+    <form class="form-horizontal" method="post" action="update-user.php" onsubmit="return formvalidation();">
+            <fieldset>
+                <legend style="font-family: 'Calistoga', cursive;">Edit User Details</legend>
+                <?php
+      if(isset($_SESSION['success']))
+      {
+          echo $_SESSION['success'];
+          unset($_SESSION['success']);
+      }
+    ?>
+                <?php
+      $user_id=$_GET['id'];
+      $query = "SELECT * FROM users where id='$user_id'";
+      $res = mysqli_query($conn,$query);
+      $data=mysqli_fetch_array($res);
+
+    ?>
+                <input type="hidden" name="id" value="<?php echo $user_id;?>">
+                <div class="form-group">
+                    <label for="username" class="col-lg-2 control-label">User Name</label>
+                    <div class="col-lg-10">
+                        <input type="text" name="username1" class="form-control" id="username" placeholder="Username" value="<?php echo $data['username'] ?>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="user_type" class="col-lg-2 control-label">User Type</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="user_type1" id="user_type" placeholder="UserType" value="<?php echo $data['user_type'] ?>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="col-lg-2 control-label">Email</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="email1" id="email" placeholder="Email" value="<?php echo $data['email'] ?>">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="department" class="col-lg-2 control-label">Department</label>
+                    <div class="col-lg-10">
+                        <input type="text" name="department1" class="form-control" id="department" placeholder="Department" value="<?php echo $data['department'] ?>">
+                    </div>
+                </div>
 
 
-    <div class="form-group" style="">
-      <div class="col-lg-10 col-lg-offset-2">
-        <button type="reset" class="btn btn-default">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
+                <div class="form-group" style="">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <button type="reset" class="btn btn-default">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
     </div>
-  </fieldset>
-</form>
-    </div>
-
-<!--
-    <div class="request" style="cursor: pointer;">
-        <h3 style="text-align: center;margin-top: 10px;color: white;font-family: 'Calistoga', cursive;font-size:20px;">Accept the Club Event Request</h3>
-    </div>
--->
-<!--
-    <table class="table table-striped table-hover " style="position:absolute;top:0;margin-top:340px;width:70%;margin-left:300px;">
-        <thead>
-            <tr>
-                <th style="color:white">Sr.No.</th>
-                <th style="color:white">Date</th>
-                <th style="color:white">Club Name</th>
-                <th style="color:white">Event Name</th>
-                <th style="color:white">Time From</th>
-                <th style="color:white">Time To</th>
-                <th style="color:white">Venue</th>
-                <th style="color:white">Apply By</th>
-                <th style="color:white">Status</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-    $i=1;
-            $username = $_SESSION['username'];
-            $query = "SELECT * FROM `apply_event` WHERE `apply_by` = '$username'";
-            $res = mysqli_query($conn,$query);
-            $count= mysqli_num_rows($res);
-
-            if($count>0){
-                while($row=mysqli_fetch_array($res))
-                {
-            ?>
-            <tr>
-                <td style="color:black"><?php echo $i;?></td>
-                <td class="l_from" style="color:black"><?php echo $row['l_from']?></td>
-                <td class="club" style="color:black"><?php echo $row['club']?></td>
-                <td class="evtname" style="color:black"><?php echo $row['evtname']?></td>
-                <td class="time_from" style="color:black"><?php echo $row['time_from']?>
-                </td>
-                <td class="time_to" style="color:black"><?php echo $row['time_to']?></td>
-                <td class="venue_select" style="color:black"><?php echo $row['venue_select']?></td>
-                <td class="apply_by" style="color:black"><?php echo $row['apply_by']?></td>
-                <td class="status" style="color:black"><?php echo $row['status']?></td>
-            </tr>
-            <?php $i++;}}else{
-            }
-            ?>
-        </tbody>
-    </table>
--->
 </body>
 
 </html>
