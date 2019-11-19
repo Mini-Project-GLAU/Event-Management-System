@@ -1,8 +1,6 @@
 <?php
 session_start();
-
-$conn = new mysqli("localhost","root","","cems");
-
+require 'db.php';
 $msg = "";
 
 if(isset($_POST['login'])){

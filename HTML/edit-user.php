@@ -54,9 +54,45 @@ if(!isset($_SESSION['username']) || $_SESSION['role']!= "admin"){
 <!--        <h4 style="text-align: center; color: white;margin-top: -10px;font-family: 'Calistoga', cursive;"> ID : 171500308</h4>-->
         <h4 style="text-align: center;color: white;margin-top: -10px;font-family: 'Calistoga', cursive;"><?= $_SESSION['role'] ?></h4>
     </div>
+    <div class="user-update" style="position:absolute;top:0;z-index:50; width:400px;height:400px;background-color:white;opacity:0.8;color:black;justify-content:center;">
+        <form class="form-horizontal">
+  <fieldset>
+    <legend>Legend</legend>
+    <div class="form-group">
+      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+      <div class="col-lg-10">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox"> Checkbox
+          </label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group" style="">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="reset" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </fieldset>
+</form>
+    </div>
+
+<!--
     <div class="request" style="cursor: pointer;">
         <h3 style="text-align: center;margin-top: 10px;color: white;font-family: 'Calistoga', cursive;font-size:20px;">Accept the Club Event Request</h3>
     </div>
+-->
+<!--
     <table class="table table-striped table-hover " style="position:absolute;top:0;margin-top:340px;width:70%;margin-left:300px;">
         <thead>
             <tr>
@@ -101,6 +137,7 @@ if(!isset($_SESSION['username']) || $_SESSION['role']!= "admin"){
             ?>
         </tbody>
     </table>
+-->
 </body>
 
 </html>

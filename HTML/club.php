@@ -47,12 +47,13 @@ if(!isset($_SESSION['username']) || $_SESSION['role']!= "teacher"){
         <h4 style="text-align: center;color: white;margin-top: -10px;"><?= $_SESSION['role'] ?></h4>
     </div>
     <button class="btn" id="myBtn">Request for Event Venue</button>
-    <div class="prevoius-event">
-        <h2 style="text-align: center;color: white;margin-top: -0px;">Previous Event</h2>
-    </div>
-    <div></div>
+    <p style="position:absolute;top:0;margin-top:350px;margin-left:450px;color:white;font-size:25px;">
+    <?php if(isset($_SESSION['success'])){
+    echo $_SESSION['success'];
+    unset($_SESSION['success']);
+} ?></p>
 
-
+    <a href="applied-event.php" style="text-decoration: none;width: 150px;height: 20px;background-color: #1296AC;padding: 10px;position: absolute;top: 0;margin-top: 350px;margin-left: 300px;font-size:20px;border-radius:4px;border:2px solid white;">All Event Request</a>
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
@@ -64,39 +65,43 @@ if(!isset($_SESSION['username']) || $_SESSION['role']!= "teacher"){
             <span class="close">&times;</span>
         </div>
         <div class="form-content">
-            <label for="club" style="font-size: 20px;">Select Club:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="club" class="select1" style="width: 200px;height: 25px; font-size: 15px;border: 1px solid black;border-radius: 3px;">
-                <option>Computer Society of India</option>
-                <option>Abacus</option>
-                <option>Javapie</option>
-                <option>Datum</option>
-                <option>IOT Club</option>
-                <option>IEEE WIE</option>
-            </select>
-            <br><br><br>
-            <label for="event-name">Enter Event Name:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="text" style="width: 200px;height: 25px;border: 1px solid black;border-radius: 3px"><br><br><br>
-            <label for="date1">Choose Date:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input id="date1" type="date" style="width: 150px;height: 25px;border: 1px solid black;border-radius: 3px;">
-            <br><br><br>
-            <label for="time1">Time Start From:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="time" id="time1" style="width: 100px;height: 25px;border: 1px solid black;border-radius: 3px;">
-            <br><br><br>
-            <label for="time2">Time End To:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="time" id="time1" style="width: 100px;height: 25px;border: 1px solid black;border-radius: 3px;"><br><br><br>
-            <label for="venue" style="font-size: 20px;">Select Venue:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <select id="venue" class="select2" style="width: 200px;height: 25px; font-size: 15px;border: 1px solid black;border-radius: 3px;">
-                <option>AB-1/Room no. 413</option>
-                <option>AB-1/Room no. 418</option>
-                <option>AB-1/Room no. 411</option>
-                <option>AB-1/Room no. 402</option>
-                <option>AB-1/Room no. 406</option>
-                <option>AB-1/Room no. 425</option>
-                <option>AB-1/Room no. 413</option>
-                <option>AB-1/Room no. 415</option>
-            </select>
-            <br><br><br><br>
-            <button type="submit" style="width: 150px;height: 35px;font-size: 15px;font-weight: bold;color: white;border: 1.5px solid white;background-color: #1296AC; cursor: pointer;margin-left: 210px;border-radius: 8px">SUBMIT REQUEST</button>
+            <form action="applyevent.php" method="post">
+                <input type="hidden" name="username" value="<?php echo $_SESSION['username'];?>">
+                <label for="club1" style="font-size: 20px;">Select Club:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="club1" name="club" class="select1" style="width: 200px;height: 25px; font-size: 15px;border: 1px solid black;border-radius: 3px;">
+                    <option>Computer Society of India</option>
+                    <option>Abacus</option>
+                    <option>Javapie</option>
+                    <option>Datum</option>
+                    <option>IOT Club</option>
+                    <option>IEEE WIE</option>
+                </select>
+                <br><br><br>
+                <label for="event-name">Enter Event Name:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="text" name="evtname" style="width: 200px;height: 25px;border: 1px solid black;border-radius: 3px"><br><br><br>
+                <label for="date1">Choose Date:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="date1" name="l_from" type="date" style="width: 150px;height: 25px;border: 1px solid black;border-radius: 3px;">
+                <br><br><br>
+                <label for="time1">Time Start From:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="time" id="time1" name="time_from" style="width: 100px;height: 25px;border: 1px solid black;border-radius: 3px;">
+                <br><br><br>
+                <label for="time2">Time End To:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="time" name="time_to" id="time2" style="width: 100px;height: 25px;border: 1px solid black;border-radius: 3px;"><br><br><br>
+                <label for="venue" style="font-size: 20px;">Select Venue:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <select id="venue" name="venue_select" class="select2" style="width: 200px;height: 25px; font-size: 15px;border: 1px solid black;border-radius: 3px;">
+                    <option>AB-1/Room no. 413</option>
+                    <option>AB-1/Room no. 418</option>
+                    <option>AB-1/Room no. 411</option>
+                    <option>AB-1/Room no. 402</option>
+                    <option>AB-1/Room no. 406</option>
+                    <option>AB-1/Room no. 425</option>
+                    <option>AB-1/Room no. 413</option>
+                    <option>AB-1/Room no. 415</option>
+                </select>
+                <br><br><br><br>
+                <button type="submit" style="width: 150px;height: 35px;font-size: 15px;font-weight: bold;color: white;border: 1.5px solid white;background-color: #1296AC; cursor: pointer;margin-left: 210px;border-radius: 8px">SUBMIT REQUEST</button>
+            </form>
+
         </div>
 
     </div>

@@ -42,7 +42,7 @@ if(!isset($_SESSION['username']) || $_SESSION['role']!= "admin"){
     <div id="side-bar">
         <ul>
             <li><a href="admin.php" style="font-family: 'Calistoga', cursive;text-decoration:none;">Dashboard</a>
-            <li><a href="users.php" style="font-family: 'Calistoga', cursive;text-decoration:none;">User Info</a></li>
+            <li><a href="users.php" style="font-family: 'Calistoga', cursive;text-decoration:none;">User Records</a></li>
             <li><a href="users.php" style="font-family: 'Calistoga', cursive;text-decoration:none;">Contact</a>
         </ul>
         <div class="logout-btn" style="width: 100px;height: 40px;font-size: 15px;font-weight: bold;color: white;border: 2px solid white;background-color: #1296AC;margin: 40px; cursor: pointer;text-align:center;position: absolute;">
@@ -55,20 +55,17 @@ if(!isset($_SESSION['username']) || $_SESSION['role']!= "admin"){
         <h4 style="text-align: center;color: white;margin-top: -10px;font-family: 'Calistoga', cursive;"><?= $_SESSION['role'] ?></h4>
     </div>
     <div class="request" style="cursor: pointer;">
-        <h3 style="text-align: center;margin-top: 10px;color: white;font-family: 'Calistoga', cursive;font-size:20px;">Accept the Club Event Request</h3>
+        <h3 style="text-align: center;margin-top: 10px;color: white;font-family: 'Calistoga', cursive;font-size:20px;">Registered Users Records</h3>
     </div>
     <table class="table table-striped table-hover " style="position:absolute;top:0;margin-top:340px;width:70%;margin-left:300px;">
         <thead>
             <tr>
                 <th style="color:white">Sr.No.</th>
-                <th style="color:white">Date</th>
-                <th style="color:white">Club Name</th>
-                <th style="color:white">Event Name</th>
-                <th style="color:white">Time From</th>
-                <th style="color:white">Time To</th>
-                <th style="color:white">Venue</th>
-                <th style="color:white">Apply By</th>
-                <th style="color:white">Status</th>
+                <th style="color:white">User Name</th>
+                <th style="color:white">User Type</th>
+                <th style="color:white">Email</th>
+                <th style="color:white">Department</th>
+                <th style="color:white">Action</th>
 
             </tr>
         </thead>
@@ -76,7 +73,7 @@ if(!isset($_SESSION['username']) || $_SESSION['role']!= "admin"){
             <?php
     $i=1;
             $username = $_SESSION['username'];
-            $query = "SELECT * FROM `apply_event` WHERE `apply_by` = '$username'";
+            $query = "SELECT * FROM `users`";
             $res = mysqli_query($conn,$query);
             $count= mysqli_num_rows($res);
 
@@ -86,15 +83,13 @@ if(!isset($_SESSION['username']) || $_SESSION['role']!= "admin"){
             ?>
             <tr>
                 <td style="color:black"><?php echo $i;?></td>
-                <td class="l_from" style="color:black"><?php echo $row['l_from']?></td>
-                <td class="club" style="color:black"><?php echo $row['club']?></td>
-                <td class="evtname" style="color:black"><?php echo $row['evtname']?></td>
-                <td class="time_from" style="color:black"><?php echo $row['time_from']?>
+                <td style="color:black"><?php echo $row['username']?></td>
+                <td style="color:black"><?php echo $row['user_type']?></td>
+                <td style="color:black"><?php echo $row['email']?></td>
+                <td style="color:black"><?php echo $row['department']?>
                 </td>
-                <td class="time_to" style="color:black"><?php echo $row['time_to']?></td>
-                <td class="venue_select" style="color:black"><?php echo $row['venue_select']?></td>
-                <td class="apply_by" style="color:black"><?php echo $row['apply_by']?></td>
-                <td class="status" style="color:black"><?php echo $row['status']?></td>
+                <td style="color:black"><a href="edit-user.php?id=<?php echo $row['id'];?>">Edit</a> | <a href="">Delete</a></td>
+
             </tr>
             <?php $i++;}}else{
             }
