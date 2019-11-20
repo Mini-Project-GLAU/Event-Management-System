@@ -6,7 +6,6 @@ if(!$conn){
     die("Database connection error");
 }
 
-//insert query for registration page
 if(isset($_REQUEST['l_from'])){
     $l_from = $_POST['l_from'];
     $club = $_POST['club'];

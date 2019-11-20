@@ -100,6 +100,7 @@ slide:nth-child(4){
     border-bottom-right-radius: 100px;
 }
 
+
 .social-section {
     width: 50px;
     height: 120px;
@@ -165,61 +166,4 @@ slide:nth-child(4){
     color: black;
 }
 
-/*
-#club {
-    position: relative;
-    overflow: hidden;
-    width: 80%;
-    height: 200px;
-    margin-top: 750px;
-    z-index: 15;
-    margin-left: 150px;
-}
-
-#club ul {
-    position: relative;
-    top: 0;
-    left: 0;
-    list-style: none;
-    width: 9000px;
-    animation: move 15s infinite;
-}
-
-#club ul li{
-    position: relative;
-    float: left;
-    width: 200px;
-    height: 200px;
-}
-
-@keyframes move {
-    0%{
-        left: 0;
-    }
-    25%{
-      left: -600px;
-    }
-    45%{
-        left: -600px;
-    }
-    50%{
-        left: -1200px;
-    }
-    70%{
-        left: -1200px;
-    }
-    75%{
-        left: -1800px;
-    }
-    80%{
-        left: -1800px;
-    }
-    90%{
-        left: 2400px;
-    }
-    100%{
-        left: 0;
-    }
-}
-*/
 

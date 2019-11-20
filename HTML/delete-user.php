@@ -9,7 +9,7 @@ if(!$conn){
 $user_id=$_GET['id'];
 
 
-    echo $query = "delete from `users` where `id`='$user_id'";
+    $query = "delete from `users` where `id`='$user_id'";
 
     $res=mysqli_query($conn,$query);
     if($res){

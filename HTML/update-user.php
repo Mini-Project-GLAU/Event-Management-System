@@ -12,7 +12,7 @@ if(isset($_REQUEST['id']))
     $email = $_POST['email1'];
     $department = $_POST['department1'];
 
-    echo $query = "UPDATE `users` SET `username`='$username',`user_type`='$user_type',`email`='$email',`department`='$department' where `id`='$user_id'";
+    $query = "UPDATE `users` SET `username`='$username',`user_type`='$user_type',`email`='$email',`department`='$department' where `id`='$user_id'";
 
     $res=mysqli_query($conn,$query);
     if($res){

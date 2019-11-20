@@ -52,13 +52,11 @@ if(isset($_POST['login'])){
     <meta name="keywords" content="Event,Management,System">
     <title>Event Management System</title>
     <link rel="stylesheet" href="../CSS/home.css">
-    <!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">-->
     <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link rel="icon" href="../IMAGES/logo.jpg" type="text/css">
-    <!--    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>-->
 
 </head>
 

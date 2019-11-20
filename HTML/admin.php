@@ -51,14 +51,49 @@ if(!isset($_SESSION['username']) || $_SESSION['role']!= "admin"){
     </div>
     <div class="admin-info">
         <h3 style="text-align: center;color: white;font-family: 'Calistoga', cursive;"><?= $_SESSION['username'] ?></h3>
-<!--        <h4 style="text-align: center; color: white;margin-top: -10px;font-family: 'Calistoga', cursive;"> ID : 171500308</h4>-->
+
         <h4 style="text-align: center;color: white;margin-top: -10px;font-family: 'Calistoga', cursive;"><?= $_SESSION['role'] ?></h4>
     </div>
     <div class="request" style="cursor: pointer;">
         <h3 style="text-align: center;margin-top: 10px;color: white;font-family: 'Calistoga', cursive;font-size:20px;">Accept the Club Event Request</h3>
     </div>
 
-       <table class="table table-striped table-hover " style="position:absolute;top:0;margin-top:340px;width:70%;margin-left:300px;">
+    <!--
+    <?php
+    if(isset($_POST['approved'])){
+        $status = "Approved";
+        $comment=$_POST['comment'];
+        $id=$_POST['id'];
+
+$query = "UPDATE `apply_event` SET `status`='$status', `comment`='$comment' where  `id`='$id'";
+
+    $res=mysqli_query($conn,$query);
+    if($res){
+        $_SESSION['success'] = "Data Updated successfully";
+
+    }else{
+        echo "Data not updated, Please try again";
+    }
+}
+            if(isset($_POST['rejected'])){
+                $status = "Rejected";
+                $comment1="comment";
+                $id1=$_POST['id'];
+                $query = "UPDATE `apply_event` SET `status`='$status', `comment`='$comment1' where  `id`='$id1'";
+
+    $res=mysqli_query($conn,$query);
+    if($res){
+        $_SESSION['success'] = "Data Updated successfully";
+
+    }else{
+        echo "Data not updated, Please try again";
+    }
+            }
+
+    ?>
+-->
+
+    <table class="table table-striped table-hover " style="position:absolute;top:0;margin-top:340px;width:70%;margin-left:300px;">
         <thead>
             <tr>
                 <th style="color:white">Sr.No.</th>
@@ -70,7 +105,6 @@ if(!isset($_SESSION['username']) || $_SESSION['role']!= "admin"){
                 <th style="color:white">Venue</th>
                 <th style="color:white">Apply By</th>
                 <th style="color:white">Status</th>
-                <th style="color:white">Comment</th>
                 <th style="color:white">Comment</th>
 
             </tr>
@@ -98,9 +132,16 @@ if(!isset($_SESSION['username']) || $_SESSION['role']!= "admin"){
                 <td class="venue_select" style="color:black"><?php echo $row['venue_select']?></td>
                 <td class="apply_by" style="color:black"><?php echo $row['apply_by']?></td>
                 <td class="status" style="color:green"><?php echo $row['status']?></td>
-                <td><textarea name="comment"></textarea></td>
-                <td><button type="submit" class="btn btn-primary">Approved</button>
-                <button type="submit" class="btn btn-primary">Reject</button></td>
+                <td>
+                    <form method="post" action="">
+                        <input type="hidden" name="id" value="<?php echo $row['id']?>">
+                        <button type="submit" name="approved" class="btn btn-primary">Approved</button>
+                    </form>
+                    <form method="post" action="">
+                        <input type="hidden" name="id" value="<?php echo $row['id']?>">
+                        <button type="submit" name="rejected" class="btn btn-primary">Reject</button>
+                    </form>
+                </td>
             </tr>
             <?php $i++;}}else{
             }
